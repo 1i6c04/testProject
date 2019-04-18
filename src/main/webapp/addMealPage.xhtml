@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/templates/header.xhtml">
+        <ui:define name="contentArea">
+            <h:form enctype="multipart/form-data">
+                <h:outputText value="名稱" class="G"/>
+                <h:inputText id="name" class="G" label="Name" value="#{mealManageBean.createItem.name}"
+                                              required="true" requiredMessage="請填寫名稱">
+                                <f:validateLength minimum="1" />    
+                </h:inputText>
+                <p:message for="name" display="text" />
+                
+                <h:outputText value="價格" class="G"/>
+                <h:inputText id="price" class="G" label="Price" value="#{mealManageBean.createItem.price}"
+                                              required="true" requiredMessage="請填寫價格">
+                    <ui:remove><f:validateLongRange minimum="1" maximum="9999"/></ui:remove>
+                </h:inputText>
+                <p:message for="price" display="text" />
+                <p:fileUpload fileUploadListener="#{uploadBean.handleFileUpload(event)}" mode="advanced" dragDropSupport="false"
+                  update="messages" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpeg|png)$/" />
+                <p:growl id="messages" showDetail="true" />     
+                <h:commandButton value="送出" class="buton" action="#{mealManageBean.addItem}"/>&nbsp;
+                <h:commandButton value="取消" style="margin: 0 1em 0 0;" class="buton" action="/mealManagePage" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
