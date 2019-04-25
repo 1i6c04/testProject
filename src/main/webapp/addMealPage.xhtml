@@ -21,11 +21,11 @@
                     <ui:remove><f:validateLongRange minimum="1" maximum="9999"/></ui:remove>
                 </h:inputText>
                 <p:message for="price" display="text" />
-                
-                <p:fileUpload fileUploadListener="#{fileUploadController.upload(event)}" mode="advanced" dragDropSupport="false"
-                  update="messages" sizeLimit="1000000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpeg|png)$/" />
+                <h:form enctype="multipart/form-data">
+                <p:fileUpload fileUploadListener="#{fileUploadController.upload(event)}" mode="advanced"
+                  update="messages" allowTypes="/(\.|\/)(gif|jpeg|png)$/" />
                 <p:growl id="messages" showDetail="true" />  
-                
+                </h:form>
                 <h:commandButton value="送出" class="buton" action="#{mealManageBean.addItem}"/>&nbsp;
                 <h:commandButton value="取消" style="margin: 0 1em 0 0;" class="buton" action="/mealManagePage" immediate="true" />
             </h:form>

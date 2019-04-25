@@ -14,18 +14,22 @@ import java.io.OutputStream;
 import javax.faces.application.FacesMessage;
 import javax.inject.Named;
 import javax.faces.context.FacesContext;
- 
 import org.primefaces.event.FileUploadEvent;
+ 
  
 @Named("fileUploadController")
 public class FileUploadController {
-    private String destination = "C:\\Users\\erus\\Documents\\NetBeansProjects\\testProject\\src\\main\\webapp\\resources\\img";
+    private final String destination = "C:\\Users\\erus\\Documents\\NetBeansProjects\\testProject\\src\\main\\webapp\\resources\\img";
  
-    public void upload(FileUploadEvent event) throws IOException {
+    public void upload(FileUploadEvent event){
         FacesMessage msg = new FacesMessage("Success! ", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
         // Do what you want with the file
+        try{
         copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
  
     }
  
@@ -51,4 +55,6 @@ public class FileUploadController {
             System.out.println(e.getMessage());
         }
     }
+    
+    
 }

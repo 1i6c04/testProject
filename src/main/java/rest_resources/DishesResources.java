@@ -55,7 +55,7 @@ public class DishesResources {
     }
     
     
-    //test command:curl  http://localhost:16903/improject/rest/dishes
+    //test command:curl  163.17.9.46:8181/testProject/rest/dishes
 
     /*@POST
     @Consumes(MediaType.TEXT_PLAIN)
